@@ -6,7 +6,7 @@ These notes are subject to change.
 
 June 9, 2014
 
-BoostrapMovies (a working title) is a personal, independent project which I
+BootStrapMovies (a working title) is a personal, independent project which I
 began in June 2014 chiefly to stay in practice in between jobs. Currently it is
 a work in progress. I might not include every single folder and file in this
 project, whether complete or not.
@@ -22,7 +22,7 @@ The Movie Database API: http://docs.themoviedb.apiary.io/
 
 The Movie Database: https://www.themoviedb.org/
 
-In less than 24 hourson this project I already had a movie-title page
+In less than 24 hours on this project I already had a movie-title page
 cross-reference a person-name page, as I've done a million times before using my
 own relational databases.
 
