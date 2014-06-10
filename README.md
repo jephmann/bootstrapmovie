@@ -49,3 +49,4 @@ which I may omit from GitHub as it has an API key), login security, etc. For now
 the priority is to learn and fixate on new (to me) adventures as my job search
 continues.
 
+Your constructive feedback is welcome and appreciated.
