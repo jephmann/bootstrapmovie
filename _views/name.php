@@ -5,40 +5,39 @@
     <div class="row">
         <div class="col-md-4">
             <h2>Details</h2>
-            <?php echo $profiles["data"]; ?>
-            <p>
-                <?php //echo $title_title ?>
-                >
-                <?php echo $link_themoviedb_name; ?>
-                |
-                <?php echo $link_imdb_name; ?>
-            </p>
             <?php
+                echo $display_profiles;
                 echo $name_born_died;
                 echo $li_aka['list'];
             ?>
+            <p>
+                <?php echo $name_biography; ?>
+            </p>
+            <pre>
+                In case of emergency uncomment.
+                <?php //print_r($data_name); ?>
+            </pre>
         </div>
         <div class="col-md-4">
             <h2>As Performer</h2>
             <?php
-                echo $cast["data"];
+                echo $display_cast;
             ?>
+            <pre>
+                In case of emergency uncomment.
+                <?php //print_r($data_credits); ?>
+            </pre>
         </div>
         <div class="col-md-4">
             <h2>Additional Credits</h2>                
             <?php
-                echo $crew["data"];
+                echo $display_crew;
             ?>
         </div>
+        <pre>
+                In case of emergency uncomment.
+            <?php //print_r($data_images) ?>
+        </pre>
     </div>
     <hr>
-    <pre>
-        <?php print_r($data_name); ?>
-    </pre>
-    <pre>
-        <?php print_r($data_name_credits); ?>
-    </pre>
-    <pre>
-        <?php print_r($data_name_images) ?>
-    </pre>
 </div>
