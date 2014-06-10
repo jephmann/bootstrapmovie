@@ -192,7 +192,7 @@
         /* movie images */
 
         // data (all of it, whether I use all of it or not)
-        // 
+
         // arrays (no "htmlentities" until looping)
         $profiles     = $data_images["profiles"];
         

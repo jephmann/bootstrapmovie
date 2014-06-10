@@ -170,7 +170,7 @@
         /* movie images */
 
         // data (all of it, whether I use all of it or not)
-                            // integer
+
         // arrays (no "htmlentities" until looping)
         $title_backdrops    = $data_images["backdrops"];
         $title_posters      = $data_images["posters"];
