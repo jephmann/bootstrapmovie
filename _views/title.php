@@ -20,20 +20,24 @@
                 echo $li_languages["list"];
                 echo $title_collection;
             ?>
-            <pre>
-                In case of emergency uncomment.
-                <?php //print_r($data_title); ?>
-            </pre>
+            <details>
+                <summary>Raw Data (Title)</summary>
+                <pre>
+                    <?php print_r($data_title); ?>
+                </pre>                
+            </details>
         </div>
         <div class="col-md-4">
             <h2>Cast</h2>
             <?php
                 echo $display_cast;
             ?>
-            <pre>
-                In case of emergency uncomment.
-                <?php //print_r($data_credits); ?>
-            </pre>
+            <details>
+                <summary>Raw Data (Cast and Crew credits)</summary>
+                <pre>
+                    <?php print_r($data_credits); ?>
+                </pre>                
+            </details>
         </div>
         <div class="col-md-4">
             <h2>Crew</h2>              
@@ -49,10 +53,12 @@
             <p>
             <?php echo $posters["data"]; ?>
             </p>
-            <pre>
-                In case of emergency uncomment.
-                <?php //print_r($data_title_images); ?>
-            </pre>
+            <details>
+                <summary>Raw Data (Images)</summary>
+                <pre>
+                    <?php print_r($data_images); ?>
+                </pre>                
+            </details>
         </div>
     </div>
     <hr>

@@ -13,31 +13,37 @@
             <p>
                 <?php echo $name_biography; ?>
             </p>
-            <pre>
-                In case of emergency uncomment.
-                <?php //print_r($data_name); ?>
-            </pre>
+            <details>
+                <summary>Raw Data (Title)</summary>
+                <pre>
+                    <?php print_r($data_name); ?>
+                </pre>                
+            </details>
         </div>
         <div class="col-md-4">
             <h2>As Performer</h2>
             <?php
                 echo $display_cast;
             ?>
-            <pre>
-                In case of emergency uncomment.
-                <?php //print_r($data_credits); ?>
-            </pre>
+            <details>
+                <summary>Raw Data (Cast and Crew credits)</summary>
+                <pre>
+                    <?php print_r($data_credits); ?>
+                </pre>                
+            </details>
         </div>
         <div class="col-md-4">
             <h2>Additional Credits</h2>                
             <?php
                 echo $display_crew;
             ?>
+            <details>
+                <summary>Raw Data (Images)</summary>
+                <pre>
+                    <?php print_r($data_images); ?>
+                </pre>                
+            </details>
         </div>
-        <pre>
-                In case of emergency uncomment.
-            <?php //print_r($data_images) ?>
-        </pre>
     </div>
     <hr>
 </div>
