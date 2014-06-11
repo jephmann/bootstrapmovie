@@ -2,6 +2,7 @@
     $page = array (
         'path' => NULL,
         'template' => 'jumbotron',
+        'subtitle' => 'BootStrap MovieDataBase',
     );
     $jumbotron = array (
         'h1' => 'Greetings from BSMDB!',

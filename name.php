@@ -65,8 +65,7 @@
             $name_born_died = "<p>";
             if(!empty($name_birthday))
             {
-                $name_birthday = strtotime($name_birthday);
-                $display_birthday = date("F d, Y", $name_birthday);
+                $display_birthday = redate($name_birthday);
                 if($name_place_of_birth != NULL)
                 {
                     $name_birthday .= ",<br />&nbsp;in {$name_place_of_birth}";
@@ -75,8 +74,7 @@
             }
             if(!empty($name_deathday))
             {
-                $name_deathday = strtotime($name_deathday);
-                $display_deathday = date("F d, Y", $name_deathday);
+                $display_deathday = redate($name_deathday);
                 $name_born_died .= "<p><strong>Died:</strong>&nbsp;{$display_deathday}</p>";                
             }
             $name_born_died .= "</p>";
@@ -189,6 +187,22 @@
             }
         }
         
+        foreach($crew as $item)
+        {
+            $jobs[] = $item['job'];
+        }
+        $jobs = array_unique($jobs);
+        foreach($jobs as $ky => $rw)
+        {
+            $jb[$ky] = $rw;
+        }
+        array_multisort($jb, SORT_ASC, $jobs);
+        var_dump($jobs);
+        foreach ($jobs as $job)
+        {
+            echo "<p>{$job}</p>";
+        }
+        
         /* movie images */
 
         // data (all of it, whether I use all of it or not)
@@ -220,10 +234,12 @@
             'h1' => $name_name,
             'p' => $link_themoviedb_name . ' | ' . $link_imdb_name,
         );
+        $page['subtitle'] = $name_name;
         $getView = 'name';
     }
     else
     {
+        $page['subtitle'] = "SELECT NAME";
         $getView = 'getno';
     }
     
@@ -258,4 +274,15 @@
             $result["list"]     .= "\n</ul>";
         }
         return $result;
+    }
+    
+    function redate($datestring)
+    {
+        // covers all dates including pre-1970 and especially pre-1900; reformats as "F d, Y"
+        list($yyyy, $mm, $dd) = preg_split("/[- ]/", $datestring);
+        $f      = date('F', mktime(0,0,0,$mm,1)); // full month name
+        $d      = (int) $dd;
+        $y      = (int) $yyyy;
+        $redate = "{$f} {$d}, {$y}";
+        return $redate;        
     }

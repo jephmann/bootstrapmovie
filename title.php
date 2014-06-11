@@ -65,15 +65,13 @@
         
         if (empty($title_release_date))
         {
-            $title_release_date = 'Unknown';
             $title_year         = '[??]';
-            $display_release_date = $title_release_date;
+            $display_release_date = 'Unknown';
         }
         else
         {
-            $title_release_date = strtotime($title_release_date);
-            $title_year         = date('Y', $title_release_date);
-            $display_release_date = date("F d, Y", $title_release_date);
+            $title_year         = date('Y', strtotime($title_release_date));
+            $display_release_date = redate($title_release_date);
         }
 
         // strings
@@ -180,13 +178,15 @@
         $posters  = images($title_posters);
         
         $jumbotron = array(
-            'h1' => '<em>' . $title_title . '</em> (' . date('Y', $title_release_date) . ')',
+            'h1' => '<em>' . $title_title  .'</em> ('. $title_year . ')',
             'p' => $title_original_title . ' > ' . $link_themoviedb_title . ' | ' . $link_imdb_title,
         );
+        $page['subtitle'] = $title_title;
         $getView = 'title';
     }
     else
     {
+        $page['subtitle'] = "SELECT TITLE";
         $getView = 'getno';
     }
     
@@ -239,5 +239,20 @@
             }
             $result["list"]     .= "\n</ul>";
         }
+        else
+        {
+            $result["list"] = NULL;
+        }
         return $result;
+    }
+    
+    function redate($datestring)
+    {
+        // covers all dates including pre-1970 and especially pre-1900; reformats as "F d, Y"
+        list($yyyy, $mm, $dd) = preg_split("/[- ]/", $datestring);
+        $f      = date('F', mktime(0,0,0,$mm,1)); // full month name
+        $d      = (int) $dd;
+        $y      = (int) $yyyy;
+        $redate = "{$f} {$d}, {$y}";
+        return $redate;        
     }
