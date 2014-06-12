@@ -137,70 +137,65 @@
                     . "{$cast_character}"
                     . "</p>";
             }
-        }        
+        }
         
-        $display_crew = NULL;
+        $display_sorted_jobs = NULL;
         if(empty($crew))
         {
-            $display_crew   = "<p>NO ADDITIONAL CREDITS</p>";
+            $display_sorted_jobs   = "<p>NO ADDITIONAL CREDITS</p>";
         }
         else
-        {        
-            // sort crew
-            foreach ($crew as $key => $row)
+        {
+            foreach($crew as $item)
             {
-                $crew_release_date[$key] = $row['release_date'];
-                $crew_department[$key]   = $row['department'];
-                $crew_job[$key]          = $row['job'];
+                $sortedjobs[] = $item['job'];
             }
-            array_multisort($crew_release_date, SORT_ASC, $crew);
-            // display_crew
-            for ($j=0; $j<count($crew); $j++)
+            $sortedjobs = array_unique($sortedjobs);
+            foreach($sortedjobs as $ky => $rw)
             {
-                $adult          = htmlentities($crew[$j]["adult"], ENT_QUOTES, 'UTF-8');
-                $credit_id      = htmlentities($crew[$j]["credit_id"], ENT_QUOTES, 'UTF-8');
-                $department     = strtoupper(htmlentities($crew[$j]["department"], ENT_QUOTES, 'UTF-8'));
-                $id             = htmlentities($crew[$j]["id"], ENT_QUOTES, 'UTF-8');
-                $original_title = htmlentities($crew[$j]["original_title"], ENT_QUOTES, 'UTF-8');
-                $poster_path    = htmlentities($crew[$j]["poster_path"], ENT_QUOTES, 'UTF-8');
-                $release_date   = htmlentities($crew[$j]["release_date"], ENT_QUOTES, 'UTF-8');
-                $title          = htmlentities($crew[$j]["title"], ENT_QUOTES, 'UTF-8');
-                $job            = htmlentities($crew[$j]["job"], ENT_QUOTES, 'UTF-8');
-                if (empty($release_date))
-                {
-                    $year   = "[??]";
-                }
-                else
-                {
-                    $release_date   = strtotime($release_date);
-                    $year           = date('Y',$release_date);                
-                }
-                $display_crew   .= "\n<p>"
-                    . "{$year}"
-                    . " <a style=\"font-weight: bold; text-decoration: none; font-style: italic\" href=\"title.php?id={$id}\">"
-                    . "{$title}"
-                    . "</a>"
-                    . "\n<br />&nbsp;"
-                    . "&nbsp;{$department}:"
-                    . "&nbsp;{$job}"
-                    . "\n</p>";
+                $jb[$ky] = $rw;
             }
-        }
-        
-        foreach($crew as $item)
-        {
-            $jobs[] = $item['job'];
-        }
-        $jobs = array_unique($jobs);
-        foreach($jobs as $ky => $rw)
-        {
-            $jb[$ky] = $rw;
-        }
-        array_multisort($jb, SORT_ASC, $jobs);
-        var_dump($jobs);
-        foreach ($jobs as $job)
-        {
-            echo "<p>{$job}</p>";
+            array_multisort($jb, SORT_ASC, $sortedjobs);
+            foreach ($sortedjobs as $jobcategory)
+            {
+                $display_sorted_jobs .= "\n<p><strong>{$jobcategory}</strong>";
+                // sort crew
+                foreach ($crew as $key => $row)
+                {
+                    $crew_release_date[$key] = $row['release_date'];
+                }
+                array_multisort($crew_release_date, SORT_ASC, $crew);
+                // display_crew
+                for ($j=0; $j<count($crew); $j++)
+                {
+                    $id             = htmlentities($crew[$j]["id"], ENT_QUOTES, 'UTF-8');
+                    $adult          = htmlentities($crew[$j]["adult"], ENT_QUOTES, 'UTF-8');
+                    $credit_id      = htmlentities($crew[$j]["credit_id"], ENT_QUOTES, 'UTF-8');
+                    $department     = strtoupper(htmlentities($crew[$j]["department"], ENT_QUOTES, 'UTF-8'));
+                    $original_title = htmlentities($crew[$j]["original_title"], ENT_QUOTES, 'UTF-8');
+                    $poster_path    = htmlentities($crew[$j]["poster_path"], ENT_QUOTES, 'UTF-8');
+                    $release_date   = htmlentities($crew[$j]["release_date"], ENT_QUOTES, 'UTF-8');
+                    $title          = htmlentities($crew[$j]["title"], ENT_QUOTES, 'UTF-8');
+                    $job            = htmlentities($crew[$j]["job"], ENT_QUOTES, 'UTF-8');
+                    if (empty($release_date))
+                    {
+                        $year   = "[??]";
+                    }
+                    else
+                    {
+                        $release_date   = strtotime($release_date);
+                        $year           = date('Y',$release_date);                
+                    }
+                    if ($job == $jobcategory) {                        
+                        $display_sorted_jobs   .= "\n<br />{$year}"
+                            . " <a style=\"font-weight: bold; text-decoration: none; font-style: italic\" href=\"title.php?id={$id}\">"
+                            . "{$title}"
+                            . "</a>";
+                    }
+                    
+                }
+                $display_sorted_jobs .= "\n</p>";                    
+            }
         }
         
         /* movie images */

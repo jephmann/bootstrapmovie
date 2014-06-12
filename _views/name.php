@@ -35,7 +35,8 @@
         <div class="col-md-4">
             <h2>Additional Credits</h2>                
             <?php
-                echo $display_crew;
+                echo $display_sorted_jobs;
+                //echo $display_crew;
             ?>
             <details>
                 <summary>Raw Data (Images)</summary>

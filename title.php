@@ -80,6 +80,12 @@
         $url_themoviedb_title_format    = str_replace(' ','-',strtolower($title_title));
         $url_themoviedb_title           = "{$url_themoviedb}movie/{$id}-{$url_themoviedb_title_format}";
         $link_themoviedb_title          = link_outward($url_themoviedb_title, "TheMovieDB");
+        
+        $display_tagline = NULL;
+        if(!empty($title_tagline))
+        {
+            $display_tagline = "<em>{$title_tagline}</em></p>";
+        }
 
         // lists
         $li_genres      = li("Genre", $title_genres);
@@ -125,43 +131,59 @@
                 $display_cast   .= "\n<p>"
                     . "<a style=\"font-weight: bold; text-decoration: none;\" href=\"name.php?id={$id}\">"
                     . "{$name}"
-                    . "</a>"
-                    . "\n<br />&nbsp;<em>as</em> {$character}"
-                    . "</p>";
+                    . "</a>";
+                if (!empty($character))
+                {
+                    $display_cast .= "\n<br />&nbsp;<em>as</em> {$character}";
+                }
+                $display_cast .= "</p>";
             }
         }
-        
-        $display_crew   = NULL;
-        if (empty($crew))
+                                                                                                                                                                              
+        $display_sorted_jobs = NULL;
+        if(empty($crew))
         {
-            $display_crew   = "<p>NO CREW CREDITS</p>";
+            $display_sorted_jobs   = "<p>NO ADDITIONAL CREDITS</p>";
         }
         else
         {
-            // sort crew
-            foreach ($crew as $key => $row)
+            foreach($crew as $item)
             {
-                $crew_department[$key] = $row['department'];
-                $crew_job[$key] = $row['job'];
-                $crew_name[$key] = $row['name'];
+                $sortedjobs[] = $item['job'];
             }
-            array_multisort($crew_department, SORT_ASC, $crew_job, SORT_ASC, $crew_name, SORT_ASC, $crew);
-            // display crew
-            for ($j =0; $j < count($crew); $j++)
+            $sortedjobs = array_unique($sortedjobs);
+            foreach($sortedjobs as $ky => $rw)
             {
-                $crew_id             = htmlentities($crew[$j]["id"], ENT_QUOTES, 'UTF-8');
-                $crew_credit_id      = htmlentities($crew[$j]["credit_id"], ENT_QUOTES, 'UTF-8');
-                $crew_profile_path   = htmlentities($crew[$j]["profile_path"], ENT_QUOTES, 'UTF-8');
-                $crew_department     = strtoupper(htmlentities($crew[$j]["department"], ENT_QUOTES, 'UTF-8'));
-                $crew_job            = htmlentities($crew[$j]["job"], ENT_QUOTES, 'UTF-8');
-                $crew_name           = htmlentities($crew[$j]["name"], ENT_QUOTES, 'UTF-8');
-                $display_crew .= "\n<p><strong>{$crew_department}:"
-                    . "\n<br />"
-                    . "&nbsp;<em>{$crew_job}:</em></strong>"
-                    . "&nbsp<a style=\"font-weight: bold; text-decoration: none;\" href=\"name.php?id={$crew_id}\">"
-                    . "{$crew_name}"
-                    . "</a>\n</p>";
+                $jb[$ky] = $rw;
             }
+            array_multisort($jb, SORT_ASC, $sortedjobs);
+            foreach ($sortedjobs as $jobcategory)
+            {
+                $display_sorted_jobs .= "\n<p><strong>{$jobcategory}</strong>";
+                // sort crew
+                foreach ($crew as $key => $row)
+                {
+                    $crew_name[$key] = $row['name'];
+                }
+                array_multisort($crew_name, SORT_ASC, $crew);
+                // display crew
+                for ($j =0; $j < count($crew); $j++)
+                {
+                    $id             = htmlentities($crew[$j]["id"], ENT_QUOTES, 'UTF-8');
+                    $credit_id      = htmlentities($crew[$j]["credit_id"], ENT_QUOTES, 'UTF-8');
+                    $profile_path   = htmlentities($crew[$j]["profile_path"], ENT_QUOTES, 'UTF-8');
+                    $department     = strtoupper(htmlentities($crew[$j]["department"], ENT_QUOTES, 'UTF-8'));
+                    $job            = htmlentities($crew[$j]["job"], ENT_QUOTES, 'UTF-8');
+                    $name           = htmlentities($crew[$j]["name"], ENT_QUOTES, 'UTF-8');
+                    if ($job == $jobcategory) {
+                    $display_sorted_jobs .= "\n<br />"
+                        . "&nbsp<a style=\"font-weight: bold; text-decoration: none;\" href=\"name.php?id={$id}\">"
+                        . "{$name}"
+                        . "</a>";
+                    }
+                }    
+                $display_sorted_jobs .= "\n</p>";
+            } 
         }
         
         
@@ -179,7 +201,7 @@
         
         $jumbotron = array(
             'h1' => '<em>' . $title_title  .'</em> ('. $title_year . ')',
-            'p' => $title_original_title . ' > ' . $link_themoviedb_title . ' | ' . $link_imdb_title,
+            'p' => $display_tagline . '<p>' . $title_original_title . ' > ' . $link_themoviedb_title . ' | ' . $link_imdb_title,
         );
         $page['subtitle'] = $title_title;
         $getView = 'title';
