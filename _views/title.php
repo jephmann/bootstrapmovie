@@ -40,15 +40,12 @@
             </details>
         </div>
         <div class="col-md-4">
-            <h2>Crew</h2>              
+            <h2>Production</h2>              
             <?php
-                echo $display_crew;
+                echo $display_sorted_jobs
             ?>
             <p>
             <?php echo $backdrops["data"]; ?>
-            </p>
-            <p style="color:red; font-family: Courier, sans-serif; font-style: italic; font-weight: bold;">
-                "<?php echo $title_tagline ?>"
             </p>
             <p>
             <?php echo $posters["data"]; ?>
