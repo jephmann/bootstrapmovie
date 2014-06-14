@@ -6,6 +6,8 @@
     // this helps to resolve buffering differences between local and live environments
     ob_start();
     
+    date_default_timezone_set('America/Chicago');
+    
     // general error stuff
     ini_set('display_errors', true);
     ini_set('display_startup_errors', true);
