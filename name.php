@@ -30,6 +30,8 @@
         $urlImages      = $objImages->url_name_images($id);
         $data_images    = Api::retrieve($urlImages);
         
+        echo $urlName;
+        
         /*
          * REDUNDANT ID DATA
          * $name_id     = htmlentities($data_name["id"], ENT_QUOTES, 'UTF-8');         * 
@@ -60,21 +62,34 @@
         $link_themoviedb_name          = link_outward($url_themoviedb_name, "TheMovieDB");
         
         $name_born_died = NULL;
+        $happy_birthday = NULL;
+        $in_memoriam = NULL;
         if(!empty($name_birthday) or !empty($name_deathday))
         {
             $name_born_died = "<p>";
+            $real_birthday = NULL;
             if(!empty($name_birthday))
-            {
-                $display_birthday = redate($name_birthday);
+            {                
+                $born = redate($name_birthday);
+                if (is_today($born['month'], $born['day']) === TRUE)
+                {
+                    $happy_birthday = "<p style=\"color: purple; font-style: italic; font-weight: bold;\">Happy Birthday!</p>";
+                }
+                $display_birthday = $born['date'];
                 if($name_place_of_birth != NULL)
                 {
-                    $name_birthday .= ",<br />&nbsp;in {$name_place_of_birth}";
+                    $display_birthday .= ",<br />&nbsp;in {$name_place_of_birth}";
                 }
                 $name_born_died .= "<p><strong>Born:</strong>&nbsp;{$display_birthday}</p>";          
             }
             if(!empty($name_deathday))
-            {
-                $display_deathday = redate($name_deathday);
+            {                
+                $died = redate($name_deathday);
+                if (is_today($died['month'], $died['day']) === TRUE)
+                {
+                    $in_memoriam = "<p style=\"color: maroon; font-style: italic; font-weight: bold;\">In Memoriam.</p>";
+                }
+                $display_deathday = $died['date'];
                 $name_born_died .= "<p><strong>Died:</strong>&nbsp;{$display_deathday}</p>";                
             }
             $name_born_died .= "</p>";
@@ -90,7 +105,7 @@
         // arrays (no "htmlentities" until looping)
         $cast = $data_credits["cast"];
         $crew = $data_credits["crew"];
-
+        
         // lists
         
         $display_cast = NULL;
@@ -226,8 +241,8 @@
         }
         
         $jumbotron = array(
-            'h1' => $name_name,
-            'p' => $link_themoviedb_name . ' | ' . $link_imdb_name,
+            'h1'    => $name_name,
+            'p'     => $link_themoviedb_name . ' | ' . $link_imdb_name,
         );
         $page['subtitle'] = $name_name;
         $getView = 'name';
@@ -274,10 +289,29 @@
     function redate($datestring)
     {
         // covers all dates including pre-1970 and especially pre-1900; reformats as "F d, Y"
+        $redate = array();
         list($yyyy, $mm, $dd) = preg_split("/[- ]/", $datestring);
         $f      = date('F', mktime(0,0,0,$mm,1)); // full month name
         $d      = (int) $dd;
         $y      = (int) $yyyy;
-        $redate = "{$f} {$d}, {$y}";
+        $redate['year'] = $y;
+        $redate['day'] = $d;
+        $redate['month'] = $f;
+        $redate['date'] = "{$f} {$d}, {$y}";
         return $redate;        
+    }
+    
+    function is_today($month, $day)
+    {
+        $result = NULL;
+        if((date('F') == $month) and (date('d') == $day))
+        {
+            $result = TRUE;
+        }
+        else
+        {
+            $result = FALSE;
+        }
+        return $result;
+        
     }

@@ -7,7 +7,9 @@
             <h2>Details</h2>
             <?php
                 echo $display_profiles;
+                echo $happy_birthday;
                 echo $name_born_died;
+                echo $in_memoriam;
                 echo $li_aka['list'];
             ?>
             <p>
