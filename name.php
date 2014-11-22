@@ -73,7 +73,7 @@
                 $born = redate($name_birthday);
                 if (is_today($born['month'], $born['day']) === TRUE)
                 {
-                    $happy_birthday = "<p style=\"color: purple; font-style: italic; font-weight: bold;\">Happy Birthday!</p>";
+                    $happy_birthday = "<p style=\"color: purple; background-color: pink;\"><strong><em>Happy Birthday!</em></strong></p>";
                 }
                 $display_birthday = $born['date'];
                 if($name_place_of_birth != NULL)
@@ -87,7 +87,7 @@
                 $died = redate($name_deathday);
                 if (is_today($died['month'], $died['day']) === TRUE)
                 {
-                    $in_memoriam = "<p style=\"color: maroon; font-style: italic; font-weight: bold;\">In Memoriam.</p>";
+                    $in_memoriam = "<p style=\"color: maroon; background-color: pink;\"><strong><em>In Memoriam.</em></strong></p>";
                 }
                 $display_deathday = $died['date'];
                 $name_born_died .= "<p><strong>Died:</strong>&nbsp;{$display_deathday}</p>";                
