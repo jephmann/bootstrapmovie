@@ -12,6 +12,7 @@
                 echo $in_memoriam;
                 echo $li_aka['list'];
             ?>
+            <!-- BIOGRAPHY -->            
             <p>
                 <?php echo $name_biography; ?>
             </p>

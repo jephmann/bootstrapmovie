@@ -1,4 +1,4 @@
-<?php
+ <?php
     $page = array (
         'path' => NULL,
         'template' => 'jumbotron',
@@ -86,7 +86,7 @@
         $display_tagline = NULL;
         if(!empty($title_tagline))
         {
-            $display_tagline = "<em>{$title_tagline}</em></p>";
+            $display_tagline = "<em style=\"color: crimson;\">{$title_tagline}</em></p>\n";
         }
 
         // lists

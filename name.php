@@ -61,38 +61,49 @@
         $url_themoviedb_name           = "{$url_themoviedb}person/{$id}-{$url_themoviedb_name_format}";
         $link_themoviedb_name          = link_outward($url_themoviedb_name, "TheMovieDB");
         
+        $name_biography = nl2br($name_biography, FALSE);
+        
         $name_born_died = NULL;
         $happy_birthday = NULL;
         $in_memoriam = NULL;
         if(!empty($name_birthday) or !empty($name_deathday))
         {
-            $name_born_died = "<p>";
             $real_birthday = NULL;
             if(!empty($name_birthday))
             {                
                 $born = redate($name_birthday);
                 if (is_today($born['month'], $born['day']) === TRUE)
                 {
-                    $happy_birthday = "<p style=\"color: purple; background-color: pink;\"><strong><em>Happy Birthday!</em></strong></p>";
+                    $happy_birthday = "\n<p style=\"color: purple; background-color: pink;\">"
+                        . "<strong><em>Happy Birthday!</em></strong>"
+                        . "</p>\n";
                 }
                 $display_birthday = $born['date'];
                 if($name_place_of_birth != NULL)
                 {
-                    $display_birthday .= ",<br />&nbsp;in {$name_place_of_birth}";
+                    $display_birthday .= ",<br />"
+                        . "&nbsp;in {$name_place_of_birth}";
                 }
-                $name_born_died .= "<p><strong>Born:</strong>&nbsp;{$display_birthday}</p>";          
+                $name_born_died .= "\n<p>"
+                    . "<strong>Born:</strong>"
+                    . "&nbsp;{$display_birthday}"
+                    . "</p>\n";          
             }
             if(!empty($name_deathday))
             {                
                 $died = redate($name_deathday);
                 if (is_today($died['month'], $died['day']) === TRUE)
                 {
-                    $in_memoriam = "<p style=\"color: maroon; background-color: pink;\"><strong><em>In Memoriam.</em></strong></p>";
+                    $in_memoriam = "\n<p style=\"color: maroon; background-color: pink;\">"
+                        . "<strong><em>In Memoriam.</em></strong>"
+                        . "</p>\n";
                 }
                 $display_deathday = $died['date'];
-                $name_born_died .= "<p><strong>Died:</strong>&nbsp;{$display_deathday}</p>";                
+                $name_born_died .= "\n<p>"
+                    . "<strong>Died:</strong>"
+                    . "&nbsp;{$display_deathday}"
+                    . "</p>\n";                
             }
-            $name_born_died .= "</p>";
         }
 
         // lists
@@ -237,7 +248,7 @@
             $profiles_width          = htmlentities($profiles[$k]["width"], ENT_QUOTES, 'UTF-8');
             $display_profiles .= "\n<img"
                 . " height=\"100px\""
-                . " src=\"https://image.tmdb.org/t/p/original{$profiles_file_path}\" />";
+                . " src=\"https://image.tmdb.org/t/p/original{$profiles_file_path}\" />\n";
         }
         
         $jumbotron = array(
