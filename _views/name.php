@@ -16,7 +16,7 @@
                 <?php echo $name_biography; ?>
             </p>
             <details>
-                <summary>Raw Data (Title)</summary>
+                <summary>Raw Data (Name)</summary>
                 <pre>
                     <?php print_r($data_name); ?>
                 </pre>                

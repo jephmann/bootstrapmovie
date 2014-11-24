@@ -30,6 +30,8 @@
         $urlImages      = $objImages->url_title_images($id);
         $data_images    = Api::retrieve($urlImages);
         
+        // echo $urlTitle;
+        
         /*
          * REDUNDANT ID DATA
          * $title_id    = htmlentities($data_title["id"], ENT_QUOTES, 'UTF-8');         * 

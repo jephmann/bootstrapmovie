@@ -30,7 +30,7 @@
         $urlImages      = $objImages->url_name_images($id);
         $data_images    = Api::retrieve($urlImages);
         
-        echo $urlName;
+        // echo $urlName;
         
         /*
          * REDUNDANT ID DATA

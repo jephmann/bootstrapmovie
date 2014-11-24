@@ -10,7 +10,9 @@
             // and hide from GitHub;
             // maybe convert to constants as this still looks silly
             private $key = "f5100af9458f136f2e7e38267a6aabfa";
-            private $url = "http://private-85e98-themoviedb.apiary.io/3/";
+            //private $url = "http://private-85e98-themoviedb.apiary.io/3/";
+            //private $url = "http://private-85e98-themoviedb.apiary-mock.com/3/";
+            private $url = "http://api.themoviedb.org/3/";
             public static $url_imdb = "http://www.imdb.com/";
             public static $url_themoviedb = "https://www.themoviedb.org/";
 
