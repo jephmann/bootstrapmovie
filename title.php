@@ -30,8 +30,6 @@
         $urlImages      = $objImages->url_title_images($id);
         $data_images    = Api::retrieve($urlImages);
         
-        // echo $urlTitle;
-        
         /*
          * REDUNDANT ID DATA
          * $title_id    = htmlentities($data_title["id"], ENT_QUOTES, 'UTF-8');         * 
@@ -211,7 +209,7 @@
     else
     {
         $page['subtitle'] = "SELECT TITLE";
-        $getView = 'getno';
+        $getView = 'form_title';
     }
     
     require '_views/head.php';
@@ -220,7 +218,9 @@
     require '_views/footer.php';
     require '_views/foot.php';
     
-    
+    /*
+     * FUNCTIONS FOR THIS PAGE
+     */
     function images($list)
     {
         $result             = array();

@@ -30,8 +30,6 @@
         $urlImages      = $objImages->url_name_images($id);
         $data_images    = Api::retrieve($urlImages);
         
-        // echo $urlName;
-        
         /*
          * REDUNDANT ID DATA
          * $name_id     = htmlentities($data_name["id"], ENT_QUOTES, 'UTF-8');         * 
@@ -261,7 +259,7 @@
     else
     {
         $page['subtitle'] = "SELECT NAME";
-        $getView = 'getno';
+        $getView = 'form_name';
     }
     
     // HTML
@@ -271,6 +269,9 @@
     require '_views/footer.php';
     require '_views/foot.php';
     
+    /*
+     * FUNCTIONS FOR THIS PAGE
+     */
     function link_outward($url, $text)
     {
         $link   = "<a style=\"font-style: italic;\" target=\"_blank\" href=\"{$url}\">{$text}</a>";

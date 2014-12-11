@@ -50,6 +50,18 @@
                 return $url_name_images;
             }
             
+            // retrieve urls for text searches
+            public function url_search_title($text)
+            {
+                $url_search_title = "{$this->url}search/movie?api_key={$this->key}&query={$text}";
+                return $url_search_title;
+            }
+            public function url_search_name($text)
+            {
+                $url_search_name = "{$this->url}search/person?api_key={$this->key}&query={$text}";
+                return $url_search_name;
+            }
+            
             public static function retrieve($url)
             {
                 $json = file_get_contents($url);
