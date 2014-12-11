@@ -73,6 +73,7 @@
         {
             $title_year         = date('Y', strtotime($title_release_date));
             $display_release_date = redate($title_release_date);
+            $display_release_date = $display_release_date['date'];
         }
 
         // strings
