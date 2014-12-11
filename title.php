@@ -7,8 +7,8 @@
     require_once ($page['path'] . '_inc/functions.php');
     
     // base URLs
-    $url_imdb       = Api::$url_imdb;
-    $url_themoviedb = Api::$url_themoviedb;
+    $url_imdb       = ApiMovieDB::$url_imdb;
+    $url_themoviedb = ApiMovieDB::$url_themoviedb;
     
     /*
      * Swapping (including/requiring) Views, per GET/POST id
@@ -19,17 +19,17 @@
         // input data
         $id   = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);    
     
-        $objTitle       = new Api;
+        $objTitle       = new ApiMovieDB;
         $urlTitle       = $objTitle->url_title($id);
-        $data_title     = Api::retrieve($urlTitle);
+        $data_title     = ApiMovieDB::json_retrieve($urlTitle);
 
-        $objCredits     = new Api;
+        $objCredits     = new ApiMovieDB;
         $urlCredits     = $objCredits->url_title_credits($id);
-        $data_credits   = Api::retrieve($urlCredits);
+        $data_credits   = ApiMovieDB::json_retrieve($urlCredits);
 
-        $objImages      = new Api;
+        $objImages      = new ApiMovieDB;
         $urlImages      = $objImages->url_title_images($id);
-        $data_images    = Api::retrieve($urlImages);
+        $data_images    = ApiMovieDB::json_retrieve($urlImages);
         
         /*
          * REDUNDANT ID DATA

@@ -7,12 +7,12 @@
     require_once ($page['path'] . '_inc/first.php');
     require_once ($page['path'] . '_inc/functions.php');
     
-    $name = sanitize('name');
+    $name = sanitize('name', TRUE);
     if (strlen($name) != 0)
     {
-        $apiName    = new Api;
+        $apiName    = new ApiMovieDB;
         $urlName    = $apiName->url_search_name($name);
-        $dataName   = Api::retrieve($urlName);        
+        $dataName   = Api::json_retrieve($urlName);        
         
         $name_page              = $dataName['page'];
         $name_total_pages       = $dataName['total_pages'];
@@ -34,11 +34,13 @@
             $result_name        = $result['name'];
             $result_known_for   = $result['known_for'];
             $known_for_list     = NULL;
+            $known_for_release_date         = NULL;
             foreach ($result_known_for as $known_for)
             {
                 if(!empty($known_for['title']))
                 {
-                    $known_for_list .= "<li>{$known_for['release_date']}&nbsp;<em>{$known_for['title']}</em></li>";
+                    $known_for_release_date = redate($known_for['release_date']);
+                    $known_for_list .= "<li>{$known_for_release_date['year']}&nbsp;<em>{$known_for['title']}</em></li>";
                 }
             }
             

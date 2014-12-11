@@ -7,8 +7,8 @@
     require_once ($page['path'] . '_inc/functions.php');
     
     // base URLs
-    $url_imdb       = Api::$url_imdb;
-    $url_themoviedb = Api::$url_themoviedb;
+    $url_imdb       = ApiMovieDB::$url_imdb;
+    $url_themoviedb = ApiMovieDB::$url_themoviedb;
     
     /*
      * Swapping (including/requiring) Views, per GET/POST id
@@ -19,17 +19,17 @@
         // input data
         $id   = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);    
     
-        $objName        = new Api;
+        $objName        = new ApiMovieDB;
         $urlName        = $objName->url_name($id);
-        $data_name      = Api::retrieve($urlName);
+        $data_name      = ApiMovieDB::json_retrieve($urlName);
         
-        $objCredits     = new Api;
+        $objCredits     = new ApiMovieDB;
         $urlCredits     = $objCredits->url_name_credits($id);
-        $data_credits   = Api::retrieve($urlCredits);
+        $data_credits   = ApiMovieDB::json_retrieve($urlCredits);
         
-        $objImages      = new Api;
+        $objImages      = new ApiMovieDB;
         $urlImages      = $objImages->url_name_images($id);
-        $data_images    = Api::retrieve($urlImages);
+        $data_images    = ApiMovieDB::json_retrieve($urlImages);
         
         /*
          * REDUNDANT ID DATA
@@ -54,17 +54,18 @@
         $name_deathday          = htmlentities($data_name["deathday"], ENT_QUOTES, 'UTF-8');    // YYYY-MM-DD
 
         // strings
-        $url_imdb_name                 = "{$url_imdb}name/{$name_nm}/";
-        $link_imdb_name                = link_outward($url_imdb_name, "IMDB");    
-        $url_themoviedb_name_format    = str_replace(' ','-',strtolower($name_name));
-        $url_themoviedb_name           = "{$url_themoviedb}person/{$id}-{$url_themoviedb_name_format}";
-        $link_themoviedb_name          = link_outward($url_themoviedb_name, "TheMovieDB");
+        $url_imdb_name                  = "{$url_imdb}name/{$name_nm}/";
+        $link_imdb_name                 = link_outward($url_imdb_name, "IMDB");    
+        $url_themoviedb_name_format     = str_replace(' ','-',strtolower($name_name));
+        $url_themoviedb_name            = "{$url_themoviedb}person/{$id}-{$url_themoviedb_name_format}";
+        $link_themoviedb_name           = link_outward($url_themoviedb_name, "TheMovieDB");
         
-        $name_biography = nl2br($name_biography, FALSE);
+        $name_biography                 = nl2br($name_biography, FALSE);
         
-        $name_born_died = NULL;
-        $happy_birthday = NULL;
-        $in_memoriam = NULL;
+        $name_born_died                 = NULL;
+        $happy_birthday                 = NULL;
+        $in_memoriam                    = NULL;
+        
         if(!empty($name_birthday) or !empty($name_deathday))
         {
             $real_birthday = NULL;
