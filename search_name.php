@@ -5,6 +5,7 @@
     );
     
     require_once ($page['path'] . '_inc/first.php');
+    require_once ($page['path'] . '_inc/functions.php');
     
     $name = sanitize('name');
     if (strlen($name) != 0)
@@ -60,12 +61,4 @@
     else
     {
         echo "<h3>Name?</h3>";
-    }
-
-    // FUNCTIONS for this page
-    function sanitize($post)
-    {
-        $result = filter_input(INPUT_POST, $post, FILTER_SANITIZE_STRING);
-        $result = str_replace(' ', '+', $result);
-        return $result;
     }

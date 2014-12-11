@@ -5,6 +5,7 @@
     );
     
     require_once ($page['path'] . '_inc/first.php');
+    require_once ($page['path'] . '_inc/functions.php');
 
     $title = sanitize('title');
     if (strlen($title) != 0)
@@ -33,12 +34,13 @@
         {
             $result_id              = $result['id'];
             $result_title           = $result['title'];
-            $result_release_date    = $result['release_date'];
+            $result_release_date    = redate($result['release_date']);
             $count_results++;
             echo "<p>{$count_results}.&nbsp;"
                 . "<strong><em>"
                 . "<a href=\"title.php?id={$result_id}\">{$result_title}</a>"
-                . "</em>&nbsp;({$result_release_date})</strong>"
+                . "</em></strong>"
+                . "&nbsp;({$result_release_date})"
                 . "</p>";
         }
         // testing
@@ -52,12 +54,4 @@
     else
     {
         echo "<h3>Title?</h3>";
-    }
-
-    // FUNCTIONS for this page
-    function sanitize($post)
-    {
-        $result = filter_input(INPUT_POST, $post, FILTER_SANITIZE_STRING);
-        $result = str_replace(' ', '+', $result);
-        return $result;
     }
