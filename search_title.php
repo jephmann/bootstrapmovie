@@ -6,20 +6,12 @@
     
     require_once ($page['path'] . '_inc/first.php');
 
-    function sanitize($post)
-    {
-        $result = filter_input(INPUT_POST, $post, FILTER_SANITIZE_STRING);
-        return $result;
-    }
-
     $title = sanitize('title');
-    //$title = 'local';
     if (strlen($title) != 0)
     {
-        $apiTitle = new Api;
-        $urlTitle = $apiTitle->url_search_title($title);
-        $dataTitle = Api::retrieve($urlTitle);
-        
+        $apiTitle   = new Api;
+        $urlTitle   = $apiTitle->url_search_title($title);
+        $dataTitle  = Api::retrieve($urlTitle);        
         
         $title_page              = $dataTitle['page'];
         $title_total_pages       = $dataTitle['total_pages'];
@@ -39,21 +31,33 @@
         $count_results = 0;
         foreach ($title_results as $result)
         {
-            $result_id    = $result['id'];
-            $result_title  = $result['title'];
+            $result_id              = $result['id'];
+            $result_title           = $result['title'];
+            $result_release_date    = $result['release_date'];
             $count_results++;
             echo "<p>{$count_results}.&nbsp;"
                 . "<strong><em>"
                 . "<a href=\"title.php?id={$result_id}\">{$result_title}</a>"
-                . "</em></strong>"
+                . "</em>&nbsp;({$result_release_date})</strong>"
                 . "</p>";
         }
         // testing
+        echo "<details>";
+        echo "<summary>Raw Data (Name Search)</summary>";
         echo "<pre>";
         print_r($dataTitle);
         echo "</pre>";
+        echo "</details>";
     }
     else
     {
         echo "<h3>Title?</h3>";
+    }
+
+    // FUNCTIONS for this page
+    function sanitize($post)
+    {
+        $result = filter_input(INPUT_POST, $post, FILTER_SANITIZE_STRING);
+        $result = str_replace(' ', '+', $result);
+        return $result;
     }
