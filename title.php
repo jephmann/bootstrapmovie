@@ -55,6 +55,9 @@
         $title_tagline              = htmlentities($data_title["tagline"], ENT_QUOTES, 'UTF-8');
         $title_vote_average         = htmlentities($data_title["vote_average"], ENT_QUOTES, 'UTF-8');   // integer?
         $title_vote_count           = htmlentities($data_title["vote_count"], ENT_QUOTES, 'UTF-8');     // integer
+        
+        $title_overview = str_replace('&amp;','&',$title_overview);
+        
         // arrays (no "htmlentities" until looping)
         $title_genres                   = $data_title["genres"];
         $title_production_companies     = $data_title["production_companies"];
@@ -77,11 +80,27 @@
         }
 
         // strings
+        $url_imdb_title                 = NULL;
+        $link_imdb_title                = NULL;
+        $btn_imdb                       = NULL;
+        if(!empty($title_tt))
+        {
         $url_imdb_title                 = "{$url_imdb}title/{$title_tt}/fullcredits";
-        $link_imdb_title                = link_outward($url_imdb_title, "IMDB");    
+        $link_imdb_title                = link_outward($url_imdb_title, "IMDB");
+        $btn_imdb                       = "<a href=\"{$url_imdb_title}\""
+                                            . "target=\"_blank\""
+                                            . " class=\"btn btn-primary btn-lg\""
+                                            . " title=\"IMDB\""
+                                            . " role=\"button\">IMDB &raquo;</a>";
+        }
         $url_themoviedb_title_format    = str_replace(' ','-',strtolower($title_title));
         $url_themoviedb_title           = "{$url_themoviedb}movie/{$id}-{$url_themoviedb_title_format}";
         $link_themoviedb_title          = link_outward($url_themoviedb_title, "TheMovieDB");
+        $btn_themoviedb                 = "<a href=\"{$url_themoviedb_title}\""
+                                            . "target=\"_blank\""
+                                            . " class=\"btn btn-primary btn-lg\""
+                                            . " title=\"TheMovieDB\""
+                                            . " role=\"button\">TheMovieDB &raquo;</a>";
         
         $display_tagline = NULL;
         if(!empty($title_tagline))
@@ -90,14 +109,20 @@
         }
 
         // lists
-        $li_genres      = li("Genre", $title_genres);
+        $li_genres      = li("Genres", $title_genres);
         $li_companies   = li("Production Companies", $title_production_companies);
         $li_countries   = li("Production Countries", $title_production_countries);
         $li_languages   = li("Spoken Languages", $title_spoken_languages);
-        $title_collection = "<p><strong>Collection Notes:</strong></p>";
-        $title_collection .= "<ul>";
-        $title_collection .= "<li>" . htmlentities($title_belongs_to_collection["name"], ENT_QUOTES, 'UTF-8') . "</li>";
-        $title_collection .= "</ul>";
+        
+        $title_belongs_to_collection    = $data_title['belongs_to_collection'];
+        $title_collection               = NULL;
+        if(!empty($title_belongs_to_collection))
+        {        
+            $title_collection = "<p><strong>Collection Notes:</strong></p>";
+            $title_collection .= "<ul>";
+            $title_collection .= "<li>" . $title_belongs_to_collection['name'] . "</li>";
+            $title_collection .= "</ul>";
+        }
     
         /* credits (all of it, whether I use all of it or not) */
         
@@ -203,7 +228,7 @@
         
         $jumbotron = array(
             'h1' => '<em>' . $title_title  .'</em> ('. $title_year . ')',
-            'p' => $display_tagline . '<p>' . $title_original_title . ' > ' . $link_themoviedb_title . ' | ' . $link_imdb_title,
+            'p' => $display_tagline . '<p>',
         );
         $page['subtitle'] = $title_title;
         $getView = 'title';

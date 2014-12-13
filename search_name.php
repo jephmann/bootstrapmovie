@@ -52,6 +52,7 @@
                 . "<ul>{$known_for_list}</ul>"
                 . "</p>";
         }
+        echo "<hr />";
         // testing
         echo "<details>";
         echo "<summary>Raw Data (Name Search)</summary>";

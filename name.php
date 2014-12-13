@@ -54,11 +54,27 @@
         $name_deathday          = htmlentities($data_name["deathday"], ENT_QUOTES, 'UTF-8');    // YYYY-MM-DD
 
         // strings
-        $url_imdb_name                  = "{$url_imdb}name/{$name_nm}/";
-        $link_imdb_name                 = link_outward($url_imdb_name, "IMDB");    
+        $url_imdb_name                  = NULL;
+        $link_imdb_name                 = NULL;
+        $btn_imdb                       = NULL;
+        if(!empty($name_nm))
+        {
+            $url_imdb_name                  = "{$url_imdb}name/{$name_nm}/";
+            $link_imdb_name                 = link_outward($url_imdb_name, "IMDB");
+            $btn_imdb                       = "<a href=\"{$url_imdb_name}\""
+                                                . "target=\"_blank\""
+                                                . " class=\"btn btn-primary btn-lg\""
+                                                . " title=\"IMDB\""
+                                                . " role=\"button\">IMDB &raquo;</a>";
+        }
         $url_themoviedb_name_format     = str_replace(' ','-',strtolower($name_name));
         $url_themoviedb_name            = "{$url_themoviedb}person/{$id}-{$url_themoviedb_name_format}";
         $link_themoviedb_name           = link_outward($url_themoviedb_name, "TheMovieDB");
+        $btn_themoviedb                 = "<a href=\"{$url_themoviedb_name}\""
+                                            . "target=\"_blank\""
+                                            . " class=\"btn btn-primary btn-lg\""
+                                            . " title=\"TheMovieDB\""
+                                            . " role=\"button\">TheMovieDB &raquo;</a>";
         
         $name_biography                 = nl2br($name_biography, FALSE);
         
@@ -253,7 +269,7 @@
         
         $jumbotron = array(
             'h1'    => $name_name,
-            'p'     => $link_themoviedb_name . ' | ' . $link_imdb_name,
+            'p'     => NULL,
         );
         $page['subtitle'] = $name_name;
         $getView = 'name';

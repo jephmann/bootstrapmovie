@@ -8,6 +8,9 @@
                 <?php echo $title_overview; ?>
             </p>                
             <p>
+                <strong>Original Title:</strong> <em><?php echo $title_original_title; ?></em>
+            </p>                
+            <p>
                 <strong>Runtime:</strong> <?php echo $title_runtime; ?> minutes
             </p>
             <p>
@@ -20,6 +23,7 @@
                 echo $li_languages["list"];
                 echo $title_collection;
             ?>
+            <hr />
             <details>
                 <summary>Raw Data (Title)</summary>
                 <pre>
@@ -32,6 +36,7 @@
             <?php
                 echo $display_cast;
             ?>
+            <hr />
             <details>
                 <summary>Raw Data (Cast and Crew credits)</summary>
                 <pre>
@@ -50,6 +55,7 @@
             <p>
             <?php echo $posters["data"]; ?>
             </p>
+            <hr />
             <details>
                 <summary>Raw Data (Images)</summary>
                 <pre>

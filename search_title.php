@@ -54,6 +54,7 @@
                 . "{$result_release_year}"
                 . "</p>";
         }
+        echo "<hr />";
         // testing
         echo "<details>";
         echo "<summary>Raw Data (Name Search)</summary>";

@@ -16,6 +16,7 @@
             <p>
                 <?php echo $name_biography; ?>
             </p>
+            <hr />
             <details>
                 <summary>Raw Data (Name)</summary>
                 <pre>
@@ -28,6 +29,7 @@
             <?php
                 echo $display_cast;
             ?>
+            <hr />
             <details>
                 <summary>Raw Data (Cast and Crew credits)</summary>
                 <pre>
@@ -41,6 +43,7 @@
                 echo $display_sorted_jobs;
                 //echo $display_crew;
             ?>
+            <hr />
             <details>
                 <summary>Raw Data (Images)</summary>
                 <pre>
