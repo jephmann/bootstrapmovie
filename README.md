@@ -32,3 +32,13 @@ items -- templates, data, etc. I am accustomed to building everything from
 scratch and my CMS experience is rather minimal.
 
 Your constructive feedback is welcome and appreciated.
+
+=====
+
+TODOs:
+
+- Contact page
+- About page
+- Navigation: adding the "active" class to current page link
+- Sort data from Name text search
+- Sort data from Title text search

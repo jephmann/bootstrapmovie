@@ -52,6 +52,8 @@
         // dates
         $name_birthday          = htmlentities($data_name["birthday"], ENT_QUOTES, 'UTF-8');    // YYYY-MM-DD
         $name_deathday          = htmlentities($data_name["deathday"], ENT_QUOTES, 'UTF-8');    // YYYY-MM-DD
+        
+        $name_biography = str_replace('&amp;','&',$name_biography);
 
         // strings
         $url_imdb_name                  = NULL;
