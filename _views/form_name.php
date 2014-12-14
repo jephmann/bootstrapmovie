@@ -11,14 +11,13 @@
             <form id="formName">
                 <div>
                     <input type='text' name='name' placeholder="Enter a person's name" />
-                    <input type='submit' value='Get Name Stuff' />
+                    <input type='submit' value='Get Name Data' />
                 </div>
             </form>
         </div>
         <div class="col-md-4"></div>
     </div>
 </div>
-<hr>
 <div class="container">
     <div class="row">
         <div class="col-md-4">

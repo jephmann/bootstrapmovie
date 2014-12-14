@@ -27,7 +27,7 @@
          * - other?
          */
         
-        echo "<h2>Top results for \"{$title}\":</h2>";
+        echo "<h3>Top results for \"{$title}\":</h3>";
         
         $count_results = 0;
         foreach ($title_results as $result)

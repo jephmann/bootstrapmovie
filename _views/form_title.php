@@ -11,14 +11,13 @@
             <form id="formTitle">
                 <div>
                     <input type='text' name='title' placeholder="All or part of a movie title" />
-                    <input type='submit' value='Get Title Stuff' />
+                    <input type='submit' value='Get Title Data' />
                 </div>
             </form>
         </div>
         <div class="col-md-4"></div>
     <div class="row">
 </div>
-<hr>
 <div class="container">
     <div class="row">
         <div class="col-md-4">

@@ -163,7 +163,7 @@
                 $cast_title          = htmlentities($cast[$i]["title"], ENT_QUOTES, 'UTF-8');
                 if (empty($cast_release_date))
                 {
-                    $cast_year   = "[??]";
+                    $cast_year   = "----";
                 }
                 else
                 {

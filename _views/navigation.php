@@ -14,8 +14,8 @@
                     <li class="active"><a href="<?php echo $page['path']; ?>index.php">Home</a></li>
                     <li><a href="title.php">By Movie Title</a></li>
                     <li><a href="name.php">By Person's Name</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

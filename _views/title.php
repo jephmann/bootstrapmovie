@@ -64,5 +64,4 @@
             </details>
         </div>
     </div>
-    <hr>
 </div>
