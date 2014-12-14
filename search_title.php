@@ -27,7 +27,7 @@
          * - other?
          */
         
-        echo "<h2>{$title_total_results} results for \"{$title}\":</h2>";
+        echo "<h2>Top results for \"{$title}\":</h2>";
         
         $count_results = 0;
         foreach ($title_results as $result)
@@ -35,14 +35,15 @@
             $result_id              = $result['id'];
             $result_title           = $result['title'];
             $result_release_date    = NULL;
+            $result_release_year    = NULL;
             if(!empty($result['release_date']))
             {
                 $result_release_date    = redate($result['release_date']);
+                $result_release_year    = $result_release_date['year'];
             }
-            $result_release_year    = NULL;
-            if(!empty($result_release_date))
+            else
             {
-                $result_release_year = "&nbsp;({$result_release_date['year']})";
+                $result_release_year    = "????";
             }
             
             $count_results++;
@@ -51,7 +52,7 @@
                 . "<strong><em>"
                 . "<a href=\"title.php?id={$result_id}\">{$result_title}</a>"
                 . "</em></strong>"
-                . "{$result_release_year}"
+                . "&nbsp;({$result_release_year})"
                 . "</p>";
         }
         echo "<hr />";

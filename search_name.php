@@ -25,22 +25,31 @@
          * - other?
          */
         
-        echo "<h2>{$name_total_results} results for \"{$name}\":</h2>";
+        echo "<h2>Top results for \"{$name}\":</h2>";
         
         $count_results = 0;
         foreach ($name_results as $result)
         {
-            $result_id          = $result['id'];
-            $result_name        = $result['name'];
-            $result_known_for   = $result['known_for'];
-            $known_for_list     = NULL;
+            $result_id                      = $result['id'];
+            $result_name                    = $result['name'];
+            $result_known_for               = $result['known_for'];
+            $known_for_list                 = NULL;
             $known_for_release_date         = NULL;
+            $known_for_release_date_year    = NULL;
             foreach ($result_known_for as $known_for)
             {
                 if(!empty($known_for['title']))
                 {
-                    $known_for_release_date = redate($known_for['release_date']);
-                    $known_for_list .= "<li>{$known_for_release_date['year']}&nbsp;<em>{$known_for['title']}</em></li>";
+                    if(!empty($known_for['release_date']))
+                    {
+                        $known_for_release_date         = redate($known_for['release_date']);
+                        $known_for_release_date_year    = $known_for_release_date['year'];
+                    }
+                    else
+                    {
+                        $known_for_release_date_year = "[??]";
+                    }
+                    $known_for_list .= "<li>{$known_for_release_date_year}&nbsp;<em>{$known_for['title']}</em></li>";
                 }
             }
             
