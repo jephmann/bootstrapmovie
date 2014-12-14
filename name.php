@@ -1,7 +1,8 @@
 <?php
     $page = array (
-        'path' => NULL,
-        'template' => 'jumbotron',
+        'path'      => NULL,
+        'template'  => 'jumbotron',
+        'file'      => 'name',
     );
     require_once ($page['path'] . '_inc/first.php');
     require_once ($page['path'] . '_inc/functions.php');

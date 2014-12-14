@@ -1,8 +1,9 @@
 <?php
     $page = array (
-        'path' => NULL,
-        'template' => 'jumbotron',
-        'subtitle' => 'BootStrap MovieDataBase',
+        'path'      => NULL,
+        'template'  => 'jumbotron',
+        'subtitle'  => 'BootStrap MovieDataBase',
+        'file'      => 'learn',
     );
     $jumbotron = array (
         'h1' => 'Greetings from BSMDB!',

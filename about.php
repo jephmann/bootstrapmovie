@@ -1,10 +1,10 @@
 <?php
     $page = array (
-        'path' => NULL,
-        'template' => 'starter-template',
-        'subtitle' => 'BootStrap MovieDataBase',
-    );
-    
+        'path'      => NULL,
+        'template'  => 'starter-template',
+        'subtitle'  => 'BootStrap MovieDataBase',
+        'file'      => 'about',
+    );    
     require '_views/head.php';
     require '_views/navigation.php';
     require '_views/about.php';    

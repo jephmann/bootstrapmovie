@@ -41,13 +41,12 @@
                 Your constructive feedback is welcome and appreciated. As always, I
                 ignore the other kind of feedback.
             </p>
+            <hr />
             <p>TODOs:</p>
             <ul>
-                <li>Navigation: adding the "active" class to current page link</li>
                 <li>Sort data from Name text search</li>
                 <li>Sort data from Title text search</li>
             </ul>
-            <hr />
         </div>
         <div class="col-md-3"></div>
     </div>

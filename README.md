@@ -37,6 +37,5 @@ Your constructive feedback is welcome and appreciated.
 
 TODOs:
 
-- Navigation: adding the "active" class to current page link
 - Sort data from Name text search
 - Sort data from Title text search
