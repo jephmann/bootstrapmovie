@@ -4,7 +4,12 @@
     $path_config = "{$page['path']}_config/";
     
     // this helps to resolve buffering differences between local and live environments
-    ob_start();    
+    ob_start();
+    
+    if(function_exists('set_time_limit'))
+    {
+        @set_time_limit(90);
+    }
     
     // This block of code is used to undo magic quotes.  Magic quotes are a terrible
     // feature that was removed from PHP as of PHP 5.4.  However, older installations
