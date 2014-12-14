@@ -47,7 +47,7 @@
                     }
                     else
                     {
-                        $known_for_release_date_year = "[??]";
+                        $known_for_release_date_year = "----";
                     }
                     $known_for_list .= "<li>{$known_for_release_date_year}&nbsp;<em>{$known_for['title']}</em></li>";
                 }

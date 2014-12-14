@@ -43,7 +43,7 @@
             }
             else
             {
-                $result_release_year    = "????";
+                $result_release_year    = "----";
             }
             
             $count_results++;

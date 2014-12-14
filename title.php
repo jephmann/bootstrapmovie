@@ -69,7 +69,7 @@
         
         if (empty($title_release_date))
         {
-            $title_year         = '[??]';
+            $title_year         = '----';
             $display_release_date = 'Unknown';
         }
         else

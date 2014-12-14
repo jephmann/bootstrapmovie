@@ -223,7 +223,7 @@
                     $job            = htmlentities($crew[$j]["job"], ENT_QUOTES, 'UTF-8');
                     if (empty($release_date))
                     {
-                        $year   = "[??]";
+                        $year   = "----";
                     }
                     else
                     {
