@@ -14,7 +14,8 @@
     /*
      * Swapping (including/requiring) Views, per GET/POST id
      */
-    $getView = NULL;
+    $getView        = NULL;
+    $form_search    = array();
     if(isset($_GET['id']))
     {
         // input data
@@ -78,6 +79,15 @@
             $title_year         = date('Y', strtotime($title_release_date));
             $display_release_date = redate($title_release_date);
             $display_release_date = $display_release_date['date'];
+        }
+        
+        $display_runtime = NULL;
+        if (!empty($title_runtime) && $title_runtime > 0)
+        {
+            $display_runtime = "<p>"
+                . "<strong>Runtime:</strong>"
+                . "&nbsp;{$title_runtime} minutes"
+                . "</p>";
         }
 
         // strings
@@ -236,8 +246,13 @@
     }
     else
     {
-        $page['subtitle'] = "SELECT TITLE";
-        $getView = 'form_title';
+        $page['subtitle']                   = "SELECT TITLE";
+        $form_search['h2']                  = "Search by All or Part of a Movie's Title";
+        $form_search['id']                  = "formTitle";
+        $form_search['text']['name']        = "title";
+        $form_search['text']['placeholder'] = "Enter a movie's title";
+        $form_search['submit']['value']     = "Get Title Data";
+        $getView                            = 'form_search';
     }
     
     require '_views/head.php';

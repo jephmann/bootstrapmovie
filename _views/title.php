@@ -9,10 +9,8 @@
             </p>                
             <p>
                 <strong>Original Title:</strong> <em><?php echo $title_original_title; ?></em>
-            </p>                
-            <p>
-                <strong>Runtime:</strong> <?php echo $title_runtime; ?> minutes
             </p>
+            <?php echo $display_runtime; ?>
             <p>
                 <strong>Released:</strong> <?php echo $display_release_date; ?>
             </p>

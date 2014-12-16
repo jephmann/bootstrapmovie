@@ -14,7 +14,8 @@
     /*
      * Swapping (including/requiring) Views, per GET/POST id
      */
-    $getView = NULL;
+    $getView        = NULL;
+    $form_search    = array();
     if(isset($_GET['id']))
     {
         // input data
@@ -187,7 +188,7 @@
         $display_sorted_jobs = NULL;
         if(empty($crew))
         {
-            $display_sorted_jobs   = "<p>NO ADDITIONAL CREDITS</p>";
+            $display_sorted_jobs   = "<p>NO PRODUCTION CREDITS</p>";
         }
         else
         {
@@ -279,8 +280,13 @@
     }
     else
     {
-        $page['subtitle'] = "SELECT NAME";
-        $getView = 'form_name';
+        $page['subtitle']                   = "SELECT NAME";
+        $form_search['h2']                  = "Search by All or Part of a Person's Name";
+        $form_search['id']                  = "formName";
+        $form_search['text']['name']        = "name";
+        $form_search['text']['placeholder'] = "Enter a person's name";
+        $form_search['submit']['value']     = "Get Name Data";
+        $getView                            = 'form_search';
     }
     
     // HTML

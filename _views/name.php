@@ -38,7 +38,7 @@
             </details>
         </div>
         <div class="col-md-4">
-            <h2>Additional Credits</h2>                
+            <h2>Production Credits</h2>                
             <?php
                 echo $display_sorted_jobs;
                 //echo $display_crew;
