@@ -9,7 +9,10 @@
         <link rel="shortcut icon" href="<?php echo $page['path']; ?>ico/favicon.ico">
         <title>BSMDB: <?php echo $page['subtitle']; ?></title>
         <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <!--
         <link href="<?php echo $page['path']; ?>css/bootstrap.min.css" rel="stylesheet">
+        -->
         <!-- Custom styles for this template -->
         <link href="<?php echo $page['path']; ?>css/<?php echo $page['template']; ?>.css" rel="stylesheet">
         <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -21,6 +24,6 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script src="js/modernizr.js"></script>
+        <script src="<?php echo $page['path']; ?>js/modernizr.js"></script>
     </head>
     <body>
